@@ -1,5 +1,4 @@
 import json
-import random
 from httpx_ws import connect_ws
 
 from django.conf import settings
@@ -18,6 +17,7 @@ from .decorators import ajax_required
 from . import get_version
 from .helpers.ws import get_url_base
 from .models import Presence
+import secrets
 
 
 @ensure_csrf_cookie
@@ -43,7 +43,7 @@ def configuration(request):
     Load the configuration options of the page that are request dependent.
     """
     ws_url_base = get_url_base(
-        request.headers["Origin"], random.choice(settings.PORTS)
+        request.headers["Origin"], secrets.choice(settings.PORTS)
     )
     socialaccount_providers = []
     for provider in get_adapter(request).list_providers(request):

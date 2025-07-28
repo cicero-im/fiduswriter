@@ -2,7 +2,6 @@ import os
 import sys
 import time
 import multiprocessing
-from random import randrange
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait, Select
@@ -12,6 +11,7 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from django.conf import settings
 from channels.testing import ChannelsLiveServerTestCase
 from .editor_helper import EditorHelper
+import secrets
 
 
 class OneUserTwoBrowsersTests(EditorHelper, ChannelsLiveServerTestCase):
@@ -79,9 +79,9 @@ class OneUserTwoBrowsersTests(EditorHelper, ChannelsLiveServerTestCase):
 
         for i in range(8):
             title_input.send_keys(second_part[i])
-            time.sleep(randrange(30, 40) / 200.0)
+            time.sleep(secrets.SystemRandom().randrange(30, 40) / 200.0)
             title_input2.send_keys(first_part[i])
-            time.sleep(randrange(30, 40) / 200.0)
+            time.sleep(secrets.SystemRandom().randrange(30, 40) / 200.0)
 
         # Wait for the two editors to be synched
         self.wait_for_doc_sync(self.driver, self.driver2)
@@ -102,9 +102,9 @@ class OneUserTwoBrowsersTests(EditorHelper, ChannelsLiveServerTestCase):
 
         for char in self.TEST_TEXT:
             body_input.send_keys(char)
-            time.sleep(randrange(30, 40) / 200.0)
+            time.sleep(secrets.SystemRandom().randrange(30, 40) / 200.0)
             body_input2.send_keys(char)
-            time.sleep(randrange(30, 40) / 200.0)
+            time.sleep(secrets.SystemRandom().randrange(30, 40) / 200.0)
 
         # Wait for the two editors to be synched
         self.wait_for_doc_sync(self.driver, self.driver2)
