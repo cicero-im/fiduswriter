@@ -1,3 +1,4 @@
 setuptools==70.0.0
 twine==4.0.2
 pre-commit==4.0.1
+urllib3>=2.6.3 # not directly required, pinned by Snyk to avoid a vulnerability
