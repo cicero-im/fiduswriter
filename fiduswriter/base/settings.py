@@ -379,3 +379,4 @@ FOOTER_LINKS = []
 BRANDING_LOGO = False
 
 ASGI_APPLICATION = "base.routing.application"
+SESSION_COOKIE_SECURE = True
